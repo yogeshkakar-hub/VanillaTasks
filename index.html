@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="A modern, responsive web application built with vanilla HTML, CSS, and JavaScript. Features include task management, dark theme, and production-ready architecture.">
+    <meta name="keywords" content="vanilla JavaScript, responsive design, todo app, web development">
+    <meta property="og:title" content="Vanilla Site - Modern Web Application">
+    <meta property="og:description" content="Enterprise-grade vanilla web application with task management and dark theme support.">
+    <meta property="og:type" content="website">
+    <meta name="theme-color" content="#0066cc">
+    <title>Home - Vanilla Site</title>
+    <script>
+        (function() {
+            const savedTheme = localStorage.getItem('theme');
+            const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+            if (savedTheme === 'dark' || (!savedTheme && prefersDark)) {
+                document.documentElement.setAttribute('data-theme', 'dark');
+            } else {
+                document.documentElement.setAttribute('data-theme', 'light');
+            }
+        })();
+    </script>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="logo">🎨 Vanilla Site</div>
+            <button class="hamburger" id="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="index.html" class="active">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li id="logoutNavItem" style="display: none;"><a href="#" id="logoutLink">Logout</a></li>
+            </ul>
+            <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode" title="Toggle dark mode">🌙</button>
+        </nav>
+    </header>
+
+    <main class="container">
+        <section class="hero">
+            <h1>Welcome to Vanilla Site</h1>
+            <p>A modern, responsive web experience built with vanilla HTML, CSS, and JavaScript.</p>
+        </section>
+
+        <section class="grid-layout">
+            <article class="content-area">
+                <h2>My To-Do List</h2>
+                
+                <!-- Auth Card -->
+                <div id="authContainer" class="auth-widget">
+                    <div class="auth-tabs">
+                        <button type="button" id="tabLogin" class="auth-tab active" data-tab="login">Login</button>
+                        <button type="button" id="tabRegister" class="auth-tab" data-tab="register">Register</button>
+                    </div>
+                    
+                    <!-- Login Form -->
+                    <form id="loginForm" class="auth-form">
+                        <div class="form-group">
+                            <label for="loginEmail">Email Address</label>
+                            <input type="email" id="loginEmail" placeholder="Enter your email" required autocomplete="email">
+                        </div>
+                        <div class="form-group">
+                            <label for="loginPassword">Password</label>
+                            <input type="password" id="loginPassword" placeholder="Enter your password" required autocomplete="current-password">
+                        </div>
+                        <button type="submit" class="btn">Sign In</button>
+                    </form>
+
+                    <!-- Register Form -->
+                    <form id="registerForm" class="auth-form" style="display: none;">
+                        <div class="form-group">
+                            <label for="registerEmail">Email Address</label>
+                            <input type="email" id="registerEmail" placeholder="Enter your email" required autocomplete="email">
+                        </div>
+                        <div class="form-group">
+                            <label for="registerPassword">Password</label>
+                            <input type="password" id="registerPassword" placeholder="Create a password" required autocomplete="new-password">
+                        </div>
+                        <button type="submit" class="btn">Create Account</button>
+                    </form>
+                    <div id="authError" class="error-message" style="display: none; margin-top: var(--spacing-md);"></div>
+                </div>
+
+                <!-- To-Do Widget -->
+                <div id="todoContainer" class="todo-widget" style="display: none;">
+                    <div class="todo-input-group">
+                        <input 
+                            type="text" 
+                            id="todoInput" 
+                            class="todo-input" 
+                            placeholder="Add a new task..."
+                            aria-label="New task input"
+                        >
+                        <button id="addBtn" class="todo-btn-add" aria-label="Add task">Add</button>
+                    </div>
+                    
+                    <ul id="todoList" class="todo-list" aria-label="Task list"></ul>
+                    
+                    <div class="todo-stats" id="todoStats"></div>
+                </div>
+            </article>
+
+            <aside class="sidebar">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="#">Link 1</a></li>
+                    <li><a href="#">Link 2</a></li>
+                    <li><a href="#">Link 3</a></li>
+                </ul>
+            </aside>
+        </section>
+
+        <!-- API Data Section -->
+        <section id="api-data" class="api-section">
+            <h2>Latest Posts</h2>
+            <div id="postsContainer" class="posts-container"></div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 Vanilla Site. All rights reserved.</p>
+    </footer>
+    <script type="module" src="js/app.js" defer></script>
+</body>
+</html>
